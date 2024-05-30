@@ -2,12 +2,12 @@ const { CityRepository } = require("../repository");
 
 class CityService {
   constructor() {
-    this.CityRepository = new CityRepository();
+    this.cityRepository = new CityRepository();
   }
 
   async createCity({ name }) {
     try {
-      const city = await this.CityRepository.createCity(name);
+      const city = await this.cityRepository.createCity(name);
       return city;
     } catch (error) {
       console.log("something went wrong inside services");
@@ -17,7 +17,7 @@ class CityService {
 
   async deleteCity(cityId) {
     try {
-      const response = await this.CityRepository.deleteCity(cityId);
+      const response = await this.cityRepository.deleteCity(cityId);
       return response;
     } catch (error) {
       console.log("something went wrong inside services");
@@ -27,7 +27,7 @@ class CityService {
 
   async updateCity(cityId, data) {
     try {
-      const city = await this.CityRepository.updateCity(cityId, data);
+      const city = await this.cityRepository.updateCity(cityId, data);
       return city;
     } catch (error) {
       console.log("something went wrong inside services");
@@ -37,8 +37,18 @@ class CityService {
 
   async getCity(cityId) {
     try {
-      const city = await this.CityRepository.getCity(cityId);
+      const city = await this.cityRepository.getCity(cityId);
       return city;
+    } catch (error) {
+      console.log("something went wrong inside services");
+      throw { error };
+    }
+  }
+
+  async getAllCities() {
+    try {
+      const cities = await this.cityRepository.getAllCities();
+      return cities;
     } catch (error) {
       console.log("something went wrong inside services");
       throw { error };
